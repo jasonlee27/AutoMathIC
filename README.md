@@ -1,26 +1,27 @@
 # AutoMathIC: Automatic Mathematic In-Context Example Generation for LLM Using Multi-Modal Consistency
 
-This repository contains implementation results for automatic In-Context example generation for LLM for mathematic questions as described in the following paper:
+This repository contains implementation source code and experimental results for automatic in-context example generation for advancing math-solving capability of LLM as described in the following paper:
 
 > Paper: Automatic Mathematic In-Context Example Generation for LLM Using Multi-Modal Consistency
 
-Table of Contents
-=================
-
-   * [AutoMathIC: Automatic Mathematic In-Context Example Generation for LLM Using Multi-Modal Consistency](#automathic-ic-generation)
-      * [AutoMathIC](#automathic)
-      * [Prerequisites](#prerequisites)
-      * [Usage](#usage)
-         * [1. Mutation of target question for In-Context Examples](#1-mutation-of-target-question-for-in-context-examples)
-         * [2. Generation of Multi-Modal LLM responses](#2-generation-of-multi-modal-llm-responses)
-         * [3. Optimization of LLM Responses Using Mutated In-Context Examples](#3-optimization-of-llm-responses-using-mutated-in-context-examples)
-      * [Artifact](#artifact)
-
-# AutoMathIC
+<!-- AutoMathIC operates by initially generating a collection of mutated math problems and their corresponding LLM responses across various prompt modalities. This procedure ensures that the mutated examples maintain the same reasoning algorithm utilized for solving the target math problem, resulting in potentially the most relevant in-context examples. Accordingly, this method addresses the first challenge. Subsequently, AutoMathIC iteratively selects a subset of mutated examples that improves consistency of responses across modalities for the target math problem. This approach tackles the second challenge by evaluating LLM responses of mutations by the consistency. By doing so, it elevates the confidence level of the LLM, thereby leading to a correct answer. -->
 
 AutoMathIC is a framework that automatically generates high-quality In-
 Context examples to enhance LLMs’ mathematical reasoning. In this implementation, AutoMathIC mutates an arithmatic questions and selects a subset of mutated questions for using it as In-Context examples using consistencies over multi-modalities over 4 math problem datasets([ASDiv](https://aclanthology.org/2020.acl-main.92/), [SVAMP](https://arxiv.org/abs/2103.07191), [GSM8k](https://arxiv.org/abs/2110.14168) and [MultiArith](https://arxiv.org/abs/1608.01413)). In this work, we use modality of Chain-Of-Thought, Code and Mathematical Equation.
 Results of the AutoMathIC is [here](_results/README.md). Supplemental artifacts for the results can be downloaded from [here](_downloads/README.md)
+
+
+Table of Contents
+=================
+
+   * [Table of Contents](#table-of-contents)
+   * [Prerequisites](#prerequisites)
+   * [Organization](#organization)
+   * [Usage](#usage)
+      * [1. Mutation of target question for In-Context Examples](#1-mutation-of-target-question-for-in-context-examples)
+      * [2. Generation of Multi-Modal LLM responses](#2-generation-of-multi-modal-llm-responses)
+      * [3. Optimization of LLM Responses Using Mutated In-Context Examples](#3-optimization-of-llm-responses-using-mutated-in-context-examples)
+   * [Artifact](#artifact)
 
 Prerequisites
 =================
@@ -29,11 +30,22 @@ This application is written for ```Python=3.9.17```. All requirements are listed
 pip install -r requirements.txt
 ```
 
+Organization
+=================
+This artifact repository consists of the following files and folders:
+
+`./src/python/*`: Directory for source code in python
+
+`./_results/*`: Directory for results running the source code
+
+`./_downloads/*`: Directory for datasets used for running the source code
+
 Usage
 =================
 ## 1. Mutation of target question for In-Context Examples
 This step is to generate mutated math problems. 
 The math problems are generated with the following command:
+
 ```bash
 cd AuthoMathIC
 # llm_model is between gpt3.5 for GPT-3.5 for and gpt4omini for GPT-4o-mini
@@ -161,4 +173,4 @@ The `final_answers.json` contains final LLM responses for original math problems
 
 Artifact
 =================
-Supplemental artifacts for the results can be downloaded from [here](https://utdallas.box.com/s/yp9u497zi8ifvo9qshkqiig8t8lvcvem)
+Supplemental artifacts for the results can be downloaded from [here](https://utdallas.box.com/s/b21jlkww89v7i0tizaxbxqw5rwov6xzg)
